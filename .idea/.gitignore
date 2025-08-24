@@ -3,3 +3,17 @@
 /workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+# Arquivos compilados
+*.class
+
+# Pastas de build
+/out/
+/target/
+
+# IntelliJ IDEA
+*.iml
+.idea/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
