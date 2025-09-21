@@ -1,10 +1,10 @@
 public class Produto {
-
     private int id;
     private String nome;
     private int quantidade;
     private double preco;
 
+    // Construtor
     public Produto(int id, String nome, int quantidade, double preco) {
         this.id = id;
         this.nome = nome;
@@ -12,6 +12,7 @@ public class Produto {
         this.preco = preco;
     }
 
+    // Getters e Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -24,11 +25,13 @@ public class Produto {
     public double getPreco() { return preco; }
     public void setPreco(double preco) { this.preco = preco; }
 
+    // Representação
     @Override
     public String toString() {
         return "ID: " + id + ", Nome: " + nome + ", Quantidade: " + quantidade + ", Preço: " + preco;
     }
 
+    // CSV
     public String toCsv() {
         return id + "," + nome + "," + quantidade + "," + preco;
     }
