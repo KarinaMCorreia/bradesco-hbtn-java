@@ -25,10 +25,6 @@ public class Estoque {
 
         File f = new File(caminhoArquivo);
         if (!f.exists()) {
-            try {
-                f.getParentFile();
-                f.createNewFile();
-            } catch (IOException ignored) {}
             return;
         }
 
@@ -37,7 +33,7 @@ public class Estoque {
             while ((linha = br.readLine()) != null) {
                 if (linha.trim().isEmpty()) continue;
                 String[] cols = linha.split(",", -1);
-                if (cols.length < 4) continue; // ignora linhas malformadas
+                if (cols.length < 4) continue;
 
                 int id = Integer.parseInt(cols[0].trim());
                 String nome = cols[1].trim();
@@ -48,7 +44,6 @@ public class Estoque {
                 if (id >= proximoId) proximoId = id + 1;
             }
         } catch (IOException | NumberFormatException e) {
-            System.out.println("Erro ao ler o arquivo: " + e.getMessage());
         }
     }
 
@@ -59,69 +54,41 @@ public class Estoque {
                 bw.newLine();
             }
         } catch (IOException e) {
-            System.out.println("Erro ao salvar o arquivo: " + e.getMessage());
         }
     }
 
     public void adicionarProduto(String nome, int quantidade, double preco) {
-        if (nome == null || nome.trim().isEmpty()) {
-            System.out.println("Nome inválido.");
-            return;
-        }
-        if (quantidade < 0) {
-            System.out.println("Quantidade deve ser um número não negativo.");
-            return;
-        }
-        if (preco < 0) {
-            System.out.println("Preço deve ser um número não negativo.");
-            return;
-        }
+        if (nome == null || nome.trim().isEmpty()) return;
+        if (quantidade < 0) return;
+        if (preco < 0) return;
 
         Produto novo = new Produto(proximoId++, nome.trim(), quantidade, preco);
         produtos.add(novo);
         salvarNoArquivo();
-        System.out.println("Produto adicionado: " + novo);
     }
 
     public void excluirProduto(int id) {
-        boolean removido = false;
         for (Iterator<Produto> it = produtos.iterator(); it.hasNext(); ) {
-            Produto p = it.next();
-            if (p.getId() == id) {
+            if (it.next().getId() == id) {
                 it.remove();
-                removido = true;
-                break;
+                salvarNoArquivo();
+                return;
             }
-        }
-        if (removido) {
-            salvarNoArquivo();
-            System.out.println("Produto de ID " + id + " removido.");
-        } else {
-            System.out.println("Produto com ID " + id + " não encontrado.");
         }
     }
 
     public void atualizarQuantidade(int id, int novaQuantidade) {
-        if (novaQuantidade < 0) {
-            System.out.println("Nova quantidade deve ser um número não negativo.");
-            return;
-        }
+        if (novaQuantidade < 0) return;
         for (Produto p : produtos) {
             if (p.getId() == id) {
                 p.setQuantidade(novaQuantidade);
                 salvarNoArquivo();
-                System.out.println("Quantidade atualizada: " + p);
                 return;
             }
         }
-        System.out.println("Produto com ID " + id + " não encontrado.");
     }
 
     public void exibirEstoque() {
-        if (produtos.isEmpty()) {
-            System.out.println("Estoque vazio.");
-            return;
-        }
         for (Produto p : produtos) {
             System.out.println(p);
         }
