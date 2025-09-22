@@ -8,7 +8,7 @@ public class Program {
             p.buscaLinear("Isabela");
             p.buscaLinear("Anderson");
         } finally {
-            System.out.println("Tempo de execução: " + (System.nanoTime() - inicio));
+            System.out.println("Tempo de execução: "+(System.nanoTime()-inicio));
         }
     }
 }
