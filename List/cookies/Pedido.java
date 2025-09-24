@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class Pedido {
 
-    private List<PedidoCookie> cookies;
+    private ArrayList<PedidoCookie> cookies;
 
     public Pedido() {
         this.cookies = new ArrayList<>();
@@ -23,15 +22,15 @@ public class Pedido {
     }
 
     public int removerSabor(String sabor) {
-        int removidos = 0;
+        int removidas = 0;
         Iterator<PedidoCookie> it = cookies.iterator();
         while (it.hasNext()) {
             PedidoCookie pc = it.next();
             if (pc.getSabor().equals(sabor)) {
-                removidos += pc.getQuantidadeCaixas();
+                removidas += pc.getQuantidadeCaixas();
                 it.remove();
             }
         }
-        return removidos;
+        return removidas;
     }
 }
