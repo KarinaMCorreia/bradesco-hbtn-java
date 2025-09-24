@@ -3,7 +3,7 @@ public class PessoasArray {
     private String[] nomes;
 
     public PessoasArray() {
-        nomes =new String[]{"Amanda", "Beatriz", "Carlos","Daniela","Eduardo",
+        nomes = new String[]{"Amanda", "Beatriz", "Carlos","Daniela","Eduardo",
                 "Fabio","Gustavo", "Hingrid","Isabela","Joao","Leise","Maria",
                 "Norberto","Otavio","Paulo", "Quirino","Renata","Sabata",
                 "Tais","Umberto","Vanessa","Xavier"};
